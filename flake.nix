@@ -65,7 +65,7 @@
           system = "x86_64-linux";
 
           # >> Main home-manager configuration file <<
-          configuration = ./home-manager/home.nix;
+          configuration = ./home-manager/default.nix;
           extraModules = [
             # Adds your custom home-manager modules
             ./modules/home-manager
