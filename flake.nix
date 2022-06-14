@@ -6,8 +6,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Utilities for building our flake
     flake-utils.url = "github:numtide/flake-utils";
@@ -43,7 +45,7 @@
           system = "x86_64-linux";
 
           modules = [
-            ./nixos/configuration.nix
+            ./nixos/hosts/flores/default.nix
             # Adds your custom NixOS modules
             ./modules/nixos
             # Adds overlays
