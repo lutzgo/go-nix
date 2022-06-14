@@ -24,7 +24,7 @@
   outputs = { nixpkgs, home-manager, flake-utils, ... }@inputs:
     let
       # Bring some functions into scope (from builtins and other flakes)
-      inherit (builtins) attrValues;
+      inherit (builtins) attrValues mapAttrs;
       inherit (flake-utils.lib) eachSystemMap defaultSystems;
       inherit (nixpkgs.lib) nixosSystem;
       inherit (home-manager.lib) homeManagerConfiguration;

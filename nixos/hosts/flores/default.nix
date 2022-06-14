@@ -1,5 +1,5 @@
 # System configuration for my main desktop PC
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs,... }: {
   imports = [
     inputs.hardware.nixosModules.dell-xps-15-9500-nvidia
     inputs.hardware.nixosModules.common-pc-laptop
@@ -16,23 +16,23 @@
 
   # This will add your inputs as registries, making operations with them (such
   # as nix shell nixpkgs#name) consistent with your flake inputs.
-  nix.registry = lib.mapAttrs' (n: v: lib.nameValuePair n { flake = v; }) inputs;
+  # nix.registry = lib.mapAttrs' (n: v: lib.nameValuePair n { flake = v; }) inputs;
 
-  nix = {
-    # TODO: You can remove me if you're using NixOS 22.05+
-    package = pkgs.nixFlakes;
-    # Enable flakes and new 'nix' command
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-    autoOptimiseStore = true;
-  };
+  # nix = {
+  #   # TODO: You can remove me if you're using NixOS 22.05+
+  #   package = pkgs.nixFlakes;
+  #   # Enable flakes and new 'nix' command
+  #   extraOptions = ''
+  #     experimental-features = nix-command flakes
+  #   '';
+  #   autoOptimiseStore = true;
+  # };
 
   nixpkgs.config.allowUnfree = true;
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_5_10;
-    binfmt.emulatedSystems = [ "aarch64-linux" ];
+    # binfmt.emulatedSystems = [ "aarch64-linux" ];
 
     # Enable swap on luks
     initrd = {
@@ -100,7 +100,7 @@
       lidSwitch = "suspend";
       lidSwitchExternalPower = "suspend";
     };
-    tlp.enable = true;
+    # tlp.enable = true;
     xserver.videoDrivers = [ "nvidia" ];
   };
 
@@ -110,15 +110,15 @@
     wlr.enable = true;
   };
 
-  xserver = {
-      enable = true;
+  services.xserver = {
+    enable = true;
       
-      desktopManager.gnome.enable = true;
-      displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = true;
       
-      layout = "de";
-      xkbVariant = "";
-    };
+    layout = "de";
+    xkbVariant = "";
+  };
 
   system.stateVersion = "22.05";
 }
