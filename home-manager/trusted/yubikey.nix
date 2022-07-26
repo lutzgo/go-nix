@@ -1,6 +1,7 @@
 { pkgs, lib, persistence, ... }: {
 
 home.packages =  with pkgs; [
+  sops
   age-plugin-yubikey
   yubikey-manager
   yubikey-manager-qt
