@@ -8,6 +8,7 @@
 
     ./office/default.nix
     ./desktop/gnome/default.nix
+    # ./cli
   ];
 
   # Comment out if you wish to disable unfree packages for your system

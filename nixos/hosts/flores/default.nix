@@ -95,6 +95,11 @@
 
   services = {
     dbus.packages = [ pkgs.gcr ];
+    # Fingerprint-Reader
+    fprintd.tod = {
+      enable = true;
+      driver = [ "pkgs.libfprint-2-tod1-goodix" ];
+    };
     # Lid settings
     logind = {
       lidSwitch = "suspend";
@@ -119,6 +124,33 @@
     layout = "de";
     xkbVariant = "";
   };
+
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome-photos
+    gnome-tour
+    ]) ++ (with pkgs.gnome; [
+      cheese # webcam tool
+      gnome-music
+      # gnome-terminal
+      gedit # text editor
+      epiphany # web browser
+      geary # email reader
+      # evince # document viewer
+      gnome-characters
+      totem # video player
+      tali # poker game
+      iagno # go game
+      hitori # sudoku game
+      atomix # puzzle game
+  ]);
+
+  environment.systemPackages = with pkgs; [
+    gnomeExtensions.appindicator
+    gnomeExtensions.clipboard-indicator
+    gnomeExtensions.pop-shell
+
+    gnome.gnome-tweaks
+    ];
 
   system.stateVersion = "22.05";
 }

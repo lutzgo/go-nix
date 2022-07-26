@@ -6,7 +6,7 @@
     ./nix.nix
     # ./openssh.nix
     # ./persist.nix
-    #./sops.nix
+    ./sops.nix
     ./users.nix
   ];
 
